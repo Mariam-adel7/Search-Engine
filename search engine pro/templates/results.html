@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7fa;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        li {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: background-color 0.3s ease;
+        }
+
+        
+        a {
+            
+            color: #0077cc;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            word-break: break-all;       
+            overflow-wrap: anywhere;      
+            display: inline-block;        
+        }
+ 
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .no-results {
+            font-size: 18px;
+            color: #999;
+        }
+
+        .back-link {
+            margin-top: 40px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #0077cc;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        li.highlighted {
+            background-color: #e0f7fa;
+            border-left: 4px solid #00bcd4;
+        }
+
+        mark {
+            background-color: rgb(218, 186, 186);
+            font-weight: bold;
+            color: #0077cc;
+        }
+    </style>
+</head>
+<body data-query="{{ query }}">
+    <h1>Search Results For "{{query}}"</h1>
+
+
+    
+    {% if results %}
+        <ul id="results">
+        {% for result in results %}
+            <li>
+                {% if result|length > 0 %}
+                    <a href="{{ result[0] }}" target="_blank" onclick="highlightResult(this)">
+                        {{ result[1] if result|length > 1 else result[0] }}
+                    </a><br>
+                {% endif %}
+                {% if result|length > 2 %}
+                    <p>{{ result[2] }}</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-results">No results found.</p>
+    {% endif %}
+
+    <a class="back-link" href="/">← Back to Home</a>
+
+
+
+    <script>
+        function highlightResult(link) {
+            document.querySelectorAll('li').forEach(el => el.classList.remove('highlighted'));
+            link.closest('li').classList.add('highlighted');
+        }
+
+    const searchQuery = document.body.getAttribute('data-query');
+
+    if (searchQuery) {
+        
+        const words = searchQuery.trim().split(/\s+/).filter(Boolean);
+
+        const escapedWords = words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+
+        const regex = new RegExp(`(${escapedWords.join('|')})`, 'gi');
+
+        document.querySelectorAll('#results a, #results p').forEach(el => {
+            el.innerHTML = el.innerHTML.replace(regex, '<mark>$1</mark>');
+        });
+    }
+
+    </script>
+</body>
+</html>
