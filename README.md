@@ -89,7 +89,8 @@ search-engine/
    docker-compose up
    
 
-2. *Access the app at:*  
+2. *Access the app at:*
+   
    [http://localhost:5000](http://localhost:5000)
 
 ---
@@ -97,7 +98,7 @@ search-engine/
 ## 🐙 DockerHub
 
 The Docker image is available at:  
-https://hub.docker.com/repository/docker/daliamostafa/search_engine/general
+https://hub.docker.com/repository/docker/daliamostafa/search_engine
 
 ---
 
