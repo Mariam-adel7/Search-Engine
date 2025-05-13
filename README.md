@@ -102,8 +102,8 @@ https://hub.docker.com/repository/docker/daliamostafa/search_engine/general
 ---
 
 ## 👨‍💻 Team
-Mariam Adel Abass
-Basmallah Emad Hassan
-Dalia Mostafa Zaki
-Waleed Mohamed Abdelhamed
-Youssef Mahmoud Ragab
+-Mariam Adel Abass
+-Basmallah Emad Hassan
+-Dalia Mostafa Zaki
+-Waleed Mohamed Abdelhamed
+-Youssef Mahmoud Ragab
