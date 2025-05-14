@@ -57,10 +57,11 @@ search-engine/
 2. *Start the Flask app:*
 
    bash
+   python database.py
    python app.py
    
 
-3. *Open your browser:*  
+4. *Open your browser:*  
    Go to http://127.0.0.1:5000
 
 ---
