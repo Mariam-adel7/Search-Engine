@@ -8,7 +8,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN useradd -m appuser
+RUN adduser --disabled-password --gecos "" appuser
 USER appuser
 
 EXPOSE 5000
