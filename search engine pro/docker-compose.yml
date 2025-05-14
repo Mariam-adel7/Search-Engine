@@ -8,3 +8,8 @@ services:
       - .:/app
     environment:
       - FLASK_ENV=development
+
+networks:
+  my_network:
+    driver: bridge
+
